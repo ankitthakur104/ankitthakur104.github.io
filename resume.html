@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ankit Kumar — AI / GenAI Engineer Resume</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e1a;
+      --surface: #111827;
+      --surface2: #1a2035;
+      --border: #1f2937;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --dim: #64748b;
+      --cyan: #06b6d4;
+      --purple: #8b5cf6;
+      --green: #22c55e;
+      --red: #f43f5e;
+      --print-bg: #ffffff;
+      --print-text: #111827;
+      --print-muted: #374151;
+      --print-border: #d1d5db;
+      --print-accent: #0e7490;
+      --print-accent2: #6d28d9;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Screen layout ── */
+    .page-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    /* ── Download bar (hidden on print) ── */
+    .download-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .download-bar p { color: var(--muted); font-size: 13px; }
+    .download-bar p span { color: var(--cyan); font-weight: 600; }
+    .btn-print {
+      background: var(--cyan);
+      color: #0a0e1a;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: opacity .15s;
+      white-space: nowrap;
+    }
+    .btn-print:hover { opacity: .85; }
+
+    /* ── Resume card ── */
+    .resume {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .resume-header {
+      background: linear-gradient(135deg, #060b18 0%, #0d1530 60%, #060b18 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 44px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+    }
+    .resume-header::after {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(6,182,212,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .name { font-size: 34px; font-weight: 800; letter-spacing: -.5px; color: #fff; margin-bottom: 4px; }
+    .title { font-size: 15px; color: var(--cyan); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
+    .contact-row {
+      display: flex; flex-wrap: wrap; gap: 6px 18px;
+      font-size: 13px; color: var(--muted);
+    }
+    .contact-row a { color: var(--muted); }
+    .contact-row a:hover { color: var(--cyan); }
+    .contact-sep { color: var(--dim); }
+
+    /* ── Body ── */
+    .resume-body { padding: 36px 44px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 32px; }
+    .section:last-child { margin-bottom: 0; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    /* ── Summary ── */
+    .summary-text {
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 14.5px;
+    }
+    .summary-metrics {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 14px;
+    }
+    .metric-pill {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Courier New', monospace;
+      border: 1px solid;
+    }
+    .metric-pill.cyan  { border-color: rgba(6,182,212,.4);   color: var(--cyan);   background: rgba(6,182,212,.08); }
+    .metric-pill.green { border-color: rgba(34,197,94,.4);   color: var(--green);  background: rgba(34,197,94,.08); }
+    .metric-pill.red   { border-color: rgba(244,63,94,.4);   color: var(--red);    background: rgba(244,63,94,.08); }
+    .metric-pill.purple{ border-color: rgba(139,92,246,.4);  color: var(--purple); background: rgba(139,92,246,.08); }
+
+    /* ── Skills ── */
+    .skills-grid { display: flex; flex-direction: column; gap: 10px; }
+    .skill-row { display: flex; gap: 10px; align-items: baseline; font-size: 13.5px; }
+    .skill-label { color: var(--muted); min-width: 170px; font-weight: 600; flex-shrink: 0; }
+    .skill-values { color: var(--text); line-height: 1.5; }
+
+    /* ── Experience ── */
+    .exp-entry { margin-bottom: 28px; }
+    .exp-entry:last-child { margin-bottom: 0; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 4px; flex-wrap: wrap; }
+    .exp-role { font-size: 16px; font-weight: 700; color: #fff; }
+    .exp-company { color: var(--cyan); font-weight: 600; font-size: 14px; }
+    .exp-date { font-size: 12px; color: var(--dim); font-family: 'Courier New', monospace; white-space: nowrap; }
+    .exp-type { display: inline-block; font-size: 11px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; margin-left: 6px; }
+
+    .exp-bullets { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullet { display: grid; grid-template-columns: 6px 1fr; gap: 10px; font-size: 13.5px; color: var(--text); line-height: 1.65; }
+    .exp-bullet::before { content: '▸'; color: var(--cyan); font-size: 10px; margin-top: 4px; }
+    .bullet-bold { font-weight: 600; color: #fff; }
+    .bullet-impact { color: var(--cyan); font-weight: 600; }
+
+    /* ── Projects ── */
+    .project-entry { margin-bottom: 24px; padding: 18px 20px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; border-left: 3px solid var(--cyan); }
+    .project-entry:nth-child(even) { border-left-color: var(--purple); }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+    .project-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .project-link { font-size: 12px; color: var(--cyan); }
+    .project-stack { font-size: 12px; color: var(--dim); margin-bottom: 10px; font-family: 'Courier New', monospace; }
+    .project-lines { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .project-line { display: grid; grid-template-columns: 6px 1fr; gap: 10px; font-size: 13px; color: var(--text); line-height: 1.6; }
+    .project-line::before { content: '▸'; color: var(--purple); font-size: 10px; margin-top: 4px; }
+    .project-line:last-child::before { color: var(--green); }
+    .proj-label { font-weight: 600; color: var(--muted); }
+
+    /* ── Education ── */
+    .edu-entry { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+    .edu-degree { font-size: 15px; font-weight: 700; color: #fff; }
+    .edu-school { color: var(--muted); font-size: 13.5px; }
+    .edu-year { font-size: 12px; color: var(--dim); font-family: 'Courier New', monospace; }
+
+    /* ── Footer note ── */
+    .resume-footer {
+      padding: 16px 44px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--dim);
+      background: #080c18;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page { margin: 14mm 16mm; size: A4 portrait; }
+
+      body { background: #fff !important; color: #111 !important; font-size: 10pt; }
+      .download-bar { display: none !important; }
+      .page-wrapper { padding: 0; max-width: 100%; }
+
+      .resume {
+        background: #fff !important;
+        border: none !important;
+        border-radius: 0 !important;
+      }
+
+      .resume-header {
+        background: #f8fafc !important;
+        border-bottom: 2px solid #0e7490 !important;
+        padding: 18px 24px 16px !important;
+      }
+      .resume-header::before { background: #0e7490 !important; }
+      .resume-header::after { display: none; }
+      .name { color: #0f172a !important; font-size: 22pt !important; }
+      .title { color: #0e7490 !important; font-size: 9pt !important; }
+      .contact-row { color: #374151 !important; font-size: 9pt !important; }
+      .contact-row a { color: #374151 !important; }
+      .contact-sep { color: #9ca3af !important; }
+
+      .resume-body { padding: 16px 24px !important; }
+      .section { margin-bottom: 14px !important; }
+      .section-title { color: #0e7490 !important; border-bottom-color: #0e7490 !important; font-size: 8pt !important; margin-bottom: 8px !important; }
+
+      .summary-text { color: #1f2937 !important; font-size: 9.5pt !important; }
+      .metric-pill { display: none !important; }
+
+      .skill-label { color: #374151 !important; min-width: 130px !important; }
+      .skill-values { color: #1f2937 !important; }
+
+      .exp-role { color: #0f172a !important; font-size: 10.5pt !important; }
+      .exp-company { color: #0e7490 !important; }
+      .exp-date { color: #6b7280 !important; }
+      .exp-type { display: none !important; }
+      .exp-bullet { color: #1f2937 !important; font-size: 9.5pt !important; gap: 7px !important; }
+      .exp-bullet::before { color: #0e7490 !important; }
+      .bullet-bold { color: #0f172a !important; }
+      .bullet-impact { color: #0e7490 !important; }
+
+      .project-entry {
+        background: #f8fafc !important;
+        border-color: #d1d5db !important;
+        border-left: 2px solid #0e7490 !important;
+        padding: 10px 12px !important;
+        margin-bottom: 10px !important;
+        page-break-inside: avoid;
+      }
+      .project-entry:nth-child(even) { border-left-color: #6d28d9 !important; }
+      .project-name { color: #0f172a !important; font-size: 10pt !important; }
+      .project-link { color: #0e7490 !important; }
+      .project-stack { color: #6b7280 !important; }
+      .project-line { color: #1f2937 !important; font-size: 9pt !important; }
+      .project-line::before { color: #6d28d9 !important; }
+      .project-line:last-child::before { color: #059669 !important; }
+      .proj-label { color: #374151 !important; }
+
+      .edu-degree { color: #0f172a !important; }
+      .edu-school { color: #374151 !important; }
+      .resume-footer { display: none !important; }
+
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+  </style>
+  </head>
+  <body>
+  <div class="page-wrapper">
+
+    <!-- Download bar -->
+    <div class="download-bar">
+      <p>Press <span>Ctrl + P</span> (or Cmd + P on Mac), choose <span>Save as PDF</span> — margins: Default, Background graphics: Off.</p>
+      <button class="btn-print" onclick="window.print()">⬇ Download PDF</button>
+    </div>
+
+    <div class="resume">
+
+      <!-- Header -->
+      <div class="resume-header">
+        <div class="name">Ankit Kumar</div>
+        <div class="title">AI / GenAI Engineer &nbsp;·&nbsp; 3+ Years Experience</div>
+        <div class="contact-row">
+          <a href="mailto:ankitthakur104@gmail.com">ankitthakur104@gmail.com</a>
+          <span class="contact-sep">·</span>
+          <a href="https://linkedin.com/in/ankitkumar104" target="_blank">linkedin.com/in/ankitkumar104</a>
+          <span class="contact-sep">·</span>
+          <a href="https://github.com/ankitthakur104" target="_blank">github.com/ankitthakur104</a>
+          <span class="contact-sep">·</span>
+          <a href="https://ankitthakur104.github.io" target="_blank">ankitthakur104.github.io</a>
+          <span class="contact-sep">·</span>
+          <span>India (Remote)</span>
+        </div>
+      </div>
+
+      <div class="resume-body">
+
+        <!-- Summary -->
+        <div class="section">
+          <div class="section-title">Professional Summary</div>
+          <p class="summary-text">
+            AI/GenAI Engineer with 3+ years of production experience building intelligent agentic systems. Expert in multi-agent orchestration with LangGraph, MCP tool integrations, enterprise RAG pipelines, and transformer fine-tuning. Proven delivery at scale — improved task accuracy by 28%, raised NL-to-SQL accuracy from 70% to 88%, reduced hallucinations by 35%, and cut LLM infrastructure costs by 25% while serving 10K+ daily API requests. Strong across the full pipeline: from retrieval design and prompt engineering to evaluation frameworks, guardrails, and cloud deployment.
+          </p>
+          <div class="summary-metrics">
+            <span class="metric-pill cyan">+28% Agent Accuracy</span>
+            <span class="metric-pill green">88% SQL Accuracy</span>
+            <span class="metric-pill red">−35% Hallucinations</span>
+            <span class="metric-pill cyan">−25% LLM Costs</span>
+            <span class="metric-pill purple">10K+ Requests/day</span>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+          <div class="section-title">Technical Skills</div>
+          <div class="skills-grid">
+            <div class="skill-row"><span class="skill-label">Languages</span><span class="skill-values">Python, SQL</span></div>
+            <div class="skill-row"><span class="skill-label">LLM &amp; Agentic AI</span><span class="skill-values">GPT-4o, Claude, LangGraph, LangChain, MCP, Tool Calling, Structured Outputs, Prompt Engineering, RAG, Semantic Search, Agentic Workflows, AI Evaluation</span></div>
+            <div class="skill-row"><span class="skill-label">Retrieval &amp; Search</span><span class="skill-values">Pinecone, FAISS, Hybrid Search, Reranking, Vector Embeddings, Semantic Search</span></div>
+            <div class="skill-row"><span class="skill-label">Backend &amp; APIs</span><span class="skill-values">FastAPI, Hugging Face Transformers, n8n, REST APIs</span></div>
+            <div class="skill-row"><span class="skill-label">Fine-Tuning</span><span class="skill-values">LoRA, QLoRA, PEFT</span></div>
+            <div class="skill-row"><span class="skill-label">Databases</span><span class="skill-values">PostgreSQL, MySQL</span></div>
+            <div class="skill-row"><span class="skill-label">Cloud &amp; DevOps</span><span class="skill-values">Azure, Docker, Git, CI/CD, GitHub Actions</span></div>
+            <div class="skill-row"><span class="skill-label">Evaluation &amp; Safety</span><span class="skill-values">LLM Evaluation, Retrieval Evaluation, Observability, Guardrails, Response Validation</span></div>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+          <div class="section-title">Professional Experience</div>
+          <div class="exp-entry">
+            <div class="exp-header">
+              <div>
+                <div class="exp-role">AI / GenAI Engineer <span class="exp-type">Remote</span></div>
+                <div class="exp-company">Inquipo Technologies</div>
+              </div>
+              <div class="exp-date">Oct 2023 – Present</div>
+            </div>
+            <ul class="exp-bullets">
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">Agentic Multi-Step Reasoning:</span> Internal workflows failed when tasks required coordinated planning, tool selection, and retrieval across heterogeneous systems. Designed LangGraph multi-agent pipelines with dedicated planning, execution, and synthesis nodes, then implemented MCP interfaces for standardized, secure access to databases, APIs, and internal tools. <span class="bullet-impact">Result: +28% task completion accuracy</span> across query planning, document analysis, and knowledge retrieval workflows.
+              </span></li>
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">NL-to-SQL for Self-Service Analytics:</span> Complex schemas caused SQL generation to fail 30% of the time, forcing manual query writing and blocking non-technical stakeholders. Built an end-to-end NL-to-SQL platform with schema-aware retrieval, structured LLM outputs, query validation, and execution safeguards. <span class="bullet-impact">Result: accuracy rose from 70% to 88%</span>, enabling non-technical users to query production databases independently.
+              </span></li>
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">Hallucination-Resistant RAG Pipelines:</span> Production RAG systems injected low-quality, irrelevant chunks into LLM context, causing factually incorrect responses. Redesigned retrieval with hybrid dense-sparse search, cross-encoder reranking, and dynamic context compression, validated by automated retrieval relevance scoring. <span class="bullet-impact">Result: −35% hallucinated responses</span> in production.
+              </span></li>
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">Agent Memory &amp; Long-Horizon Orchestration:</span> Stateless agents lost context across multi-turn tasks, producing inconsistent outputs on complex workflows. Engineered persistent memory, structured state management, and workflow orchestration layers in LangGraph with full state recovery on failure. <span class="bullet-impact">Result: reliable multi-step execution</span> across long-horizon agentic tasks with measurably lower failure rates.
+              </span></li>
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">Scalable AI API Infrastructure:</span> Growing demand required high-throughput, low-latency AI APIs without proportional cost growth. Built async FastAPI microservices with connection pooling and response caching; applied retrieval optimization, context pruning, and model-routing strategies to reduce LLM calls. <span class="bullet-impact">Result: 10K+ daily requests</span> at high availability, <span class="bullet-impact">−25% LLM infrastructure cost</span>.
+              </span></li>
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">AI Evaluation &amp; Safety Guardrails:</span> Absence of automated quality checks allowed silent regressions and unsafe outputs to reach users undetected. Established evaluation pipelines for retrieval relevance, answer quality, and agent success rate; implemented structured outputs, confidence scoring, and response validation. <span class="bullet-impact">Result: measurable reduction in unsafe/out-of-scope generations</span> and confident continuous deployment of AI updates.
+              </span></li>
+
+              <li class="exp-bullet"><span>
+                <span class="bullet-bold">Workflow Automation &amp; MCP Integrations:</span> Repetitive processes across customer support, analytics, and knowledge management required significant manual coordination. Integrated AI agents with n8n event-driven pipelines and MCP-connected business systems for autonomous task execution. <span class="bullet-impact">Result: accelerated end-to-end process delivery</span> with reduced operational overhead.
+              </span></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+          <div class="section-title">Key Projects</div>
+
+          <div class="project-entry">
+            <div class="project-header">
+              <span class="project-name">Enterprise Agentic Knowledge Assistant</span>
+              <a class="project-link" href="https://ankitthakur104.github.io/conversational-knowledge-base-bot/" target="_blank">▶ Live Demo</a>
+            </div>
+            <div class="project-stack">Python · LangGraph · MCP · GPT-4o · Pinecone · FAISS · Hybrid Search · Reranking · FastAPI</div>
+            <ul class="project-lines">
+              <li class="project-line"><span><span class="proj-label">Problem:</span> Enterprise teams spent hours searching fragmented knowledge across docs, wikis, and databases with no unified interface.</span></li>
+              <li class="project-line"><span><span class="proj-label">Built:</span> Multi-agent LangGraph system with MCP tool integrations, hybrid dense-sparse search, cross-encoder reranking, and persistent agent memory for context-aware, multi-turn Q&amp;A.</span></li>
+              <li class="project-line"><span><span class="proj-label">Impact:</span> Unified cross-source retrieval with source-grounded, citation-backed answers and measurably higher answer quality over baseline RAG.</span></li>
+            </ul>
+          </div>
+
+          <div class="project-entry">
+            <div class="project-header">
+              <span class="project-name">Agentic Analytics &amp; SQL Copilot</span>
+              <a class="project-link" href="https://ankitthakur104.github.io/genai-agent-sql-assistant/" target="_blank">▶ Live Demo</a>
+            </div>
+            <div class="project-stack">Python · LangGraph · MCP · GPT-4o · PostgreSQL · FastAPI</div>
+            <ul class="project-lines">
+              <li class="project-line"><span><span class="proj-label">Problem:</span> Non-technical users couldn't access production data due to complex schemas and 30% SQL error rate in manual queries.</span></li>
+              <li class="project-line"><span><span class="proj-label">Built:</span> LangGraph agent pipeline with schema discovery, intent classification, multi-step query planning, validation, and MCP-powered SQL execution with result interpretation.</span></li>
+              <li class="project-line"><span><span class="proj-label">Impact:</span> SQL accuracy rose from 70% to 88%; self-service analytics now accessible to non-technical stakeholders without engineering support.</span></li>
+            </ul>
+          </div>
+
+          <div class="project-entry">
+            <div class="project-header">
+              <span class="project-name">Document Intelligence &amp; AI Extraction Platform</span>
+              <a class="project-link" href="https://ankitthakur104.github.io/rag-document-intelligence-engine/" target="_blank">▶ Live Demo</a>
+            </div>
+            <div class="project-stack">Python · LangGraph · GPT-4o · FAISS · OCR · FastAPI</div>
+            <ul class="project-lines">
+              <li class="project-line"><span><span class="proj-label">Problem:</span> Teams processing high-volume contracts and reports lacked structured extraction, classification, and searchable indexing at scale.</span></li>
+              <li class="project-line"><span><span class="proj-label">Built:</span> OCR → classify → extract → index pipeline with agent-based document routing, FAISS vector retrieval, and source-grounded Q&amp;A.</span></li>
+              <li class="project-line"><span><span class="proj-label">Impact:</span> &gt;90% extraction accuracy with automated end-to-end pipeline and instant semantic search over processed document corpus.</span></li>
+            </ul>
+          </div>
+
+          <div class="project-entry">
+            <div class="project-header">
+              <span class="project-name">NLP Sentiment &amp; Intent Classifier</span>
+              <a class="project-link" href="https://ankitthakur104.github.io/nlp-sentiment-intent-classifier/" target="_blank">▶ Live Demo</a>
+            </div>
+            <div class="project-stack">Python · BERT · HuggingFace Transformers · LoRA · PEFT</div>
+            <ul class="project-lines">
+              <li class="project-line"><span><span class="proj-label">Problem:</span> Manual customer feedback processing lacked fine-grained intent tagging across 200K+ samples, limiting actionable product insights.</span></li>
+              <li class="project-line"><span><span class="proj-label">Built:</span> Fine-tuned BERT for multi-label sentiment and intent classification using LoRA/PEFT for parameter-efficient training on large-scale data.</span></li>
+              <li class="project-line"><span><span class="proj-label">Impact:</span> 91% accuracy across 12 intent categories; automated feedback routing reduced manual review burden significantly.</span></li>
+            </ul>
+          </div>
+
+          <div class="project-entry">
+            <div class="project-header">
+              <span class="project-name">Customer Churn Prediction Engine</span>
+              <a class="project-link" href="https://ankitthakur104.github.io/customer-churn-prediction/" target="_blank">▶ Live Demo</a>
+            </div>
+            <div class="project-stack">Python · XGBoost · LightGBM · SHAP · MLflow · FastAPI</div>
+            <ul class="project-lines">
+              <li class="project-line"><span><span class="proj-label">Problem:</span> Churn was identified reactively post-revenue loss, with no model explainability to guide targeted retention actions.</span></li>
+              <li class="project-line"><span><span class="proj-label">Built:</span> XGBoost + LightGBM stacking ensemble with SHAP feature attribution, MLflow experiment tracking, automated drift detection, and retraining triggers.</span></li>
+              <li class="project-line"><span><span class="proj-label">Impact:</span> AUC 0.93; SHAP explanations enabled proactive retention campaigns targeting at-risk customers 30 days ahead of predicted churn.</span></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+          <div class="section-title">Education</div>
+          <div class="edu-entry">
+            <div>
+              <div class="edu-degree">Bachelor of Technology (B.Tech)</div>
+              <div class="edu-school">Computer Science &amp; Engineering</div>
+            </div>
+            <div class="edu-year">2019 – 2023</div>
+          </div>
+        </div>
+
+      </div><!-- /resume-body -->
+
+      <div class="resume-footer">
+        <span>Ankit Kumar · AI / GenAI Engineer</span>
+        <span><a href="https://ankitthakur104.github.io" target="_blank">ankitthakur104.github.io</a></span>
+      </div>
+
+    </div><!-- /resume -->
+  </div><!-- /page-wrapper -->
+  </body>
+  </html>
